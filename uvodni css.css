@@ -172,9 +172,18 @@ flex: 1;
     color: black;
 }
 
-@media (max-width: 768px) {
-    .cards{
-        color: aqua;
-        background-color: #cc2b2b;
+/* Toto platí pro tablety a mobily */
+@media screen and (max-width: 768px) {
+    /* Pokud máš menu nebo sloupce vedle sebe, 
+       tímto je dáš pod sebe */
+    .hlavni-obsah, .menu, .sloupce { 
+        flex-direction: column !important; 
+        width: 100% !important;
+        float: none !important;
+    }
+
+    /* Zmenšení písma, aby neteklo ven */
+    h1 {
+        font-size: 24px;
     }
 }
