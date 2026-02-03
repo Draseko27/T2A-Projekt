@@ -227,3 +227,49 @@ flex: 1;
         gap: 10px;
     }
 }
+
+/* Základní styl pro tlačítko (na PC neviditelné) */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    background: none;
+    border: none;
+    gap: 5px;
+}
+
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    transition: 0.3s;
+}
+
+/* Úprava pro mobily */
+@media screen and (max-width: 768px) {
+    .hamburger {
+        display: flex; /* Ukážeme tlačítko */
+    }
+
+    .top-menu {
+        display: none; /* Schováme klasické menu */
+        width: 100%;
+    }
+
+    /* Třída, kterou přidáme JavaScriptem pro zobrazení menu */
+    .top-menu.active {
+        display: block;
+    }
+
+    .top-menu ul {
+        flex-direction: column;
+        text-align: center;
+        background: #444;
+        padding: 10px 0;
+    }
+    
+    .top-menu li {
+        margin: 10px 0;
+    }
+}
