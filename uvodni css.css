@@ -172,18 +172,58 @@ flex: 1;
     color: black;
 }
 
-/* Toto platí pro tablety a mobily */
+/* === OPRAVA PRO MOBILY (pod 768px) === */
 @media screen and (max-width: 768px) {
-    /* Pokud máš menu nebo sloupce vedle sebe, 
-       tímto je dáš pod sebe */
-    .hlavni-obsah, .menu, .sloupce { 
-        flex-direction: column !important; 
-        width: 100% !important;
-        float: none !important;
+    
+    /* 1. Změníme Grid na jeden sloupec */
+    .container {
+        grid-template-columns: 1fr; /* Zrušíme ty 200px sloupce */
+        grid-template-rows: auto;    /* Výška se přizpůsobí obsahu */
+        grid-template-areas:
+            "header"
+            "main"
+            "left"   /* Sidebar bude pod hlavním obsahem */
+            "right"
+            "footer";
+        height: auto; /* Zrušíme 100vh, aby se dalo scrollovat */
     }
 
-    /* Zmenšení písma, aby neteklo ven */
-    h1 {
-        font-size: 24px;
+    /* 2. Menu v headeru pod sebe */
+    .header {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .top-menu ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .top-menu li {
+        margin-left: 0;
+    }
+
+    /* 3. Karty (cards) pod sebe */
+    .cards {
+        flex-direction: column;
+    }
+
+    /* 4. Obrázky pod sebe a na plnou šířku */
+    .images {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .images img {
+        width: 100%; /* Obrázek vyplní šířku mobilu */
+        max-width: 400px; /* Ale nebude obří na tabletu */
+    }
+
+    /* 5. Footer pod sebe */
+    .footer {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
     }
 }
