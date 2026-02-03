@@ -173,7 +173,7 @@ flex: 1;
 }
 
 @media (max-width: 768px) {
-    .footer{
+    .cards{
         color: aqua;
         background-color: #333;
     }
