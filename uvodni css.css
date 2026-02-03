@@ -172,3 +172,9 @@ flex: 1;
     color: black;
 }
 
+@media (max-width: 768px) {
+    .footer{
+        color: aqua;
+        background-color: #333;
+    }
+}
