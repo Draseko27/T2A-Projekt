@@ -228,28 +228,34 @@ flex: 1;
     }
 }
 
-/* Základní styl pro tlačítko (na PC neviditelné) */
+
+/* Základní vzhled tlačítka */
 .hamburger {
-    display: none;
+    display: none; /* Na PC úplně zmizí */
     flex-direction: column;
-    cursor: pointer;
-    background: none;
+    justify-content: space-around;
+    width: 30px;
+    height: 21px;
+    background: transparent;
     border: none;
-    gap: 5px;
+    cursor: pointer;
+    padding: 0;
+    z-index: 10;
 }
 
+/* Nastavení jednotlivých tří čárek */
 .hamburger span {
-    display: block;
-    width: 25px;
+    width: 30px;
     height: 3px;
-    background-color: white;
-    transition: 0.3s;
+    background-color: white; /* Pokud máš tmavý header, bílá je OK */
+    border-radius: 10px;
+    transition: all 0.3s linear;
 }
 
 /* Úprava pro mobily */
 @media screen and (max-width: 768px) {
     .hamburger {
-        display: flex; /* Ukážeme tlačítko */
+        display: flex; /* Na mobilu se objeví jako sloupeček čárek */
     }
 
     .top-menu {
