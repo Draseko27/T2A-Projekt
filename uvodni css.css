@@ -44,7 +44,7 @@ body {
     text-decoration: none;
 }
 
-.logoimg {
+.logo img {
   max-height: 50px; /* nebo jaká je výška headeru */
   height: 100%;
   width: auto;
