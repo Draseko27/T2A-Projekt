@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Layout – HTML & CSS</title>
+    <title>BSS Wiki</title>
     <link rel="stylesheet" href="uvodni css.css">
 </head>
 <body>
@@ -12,7 +12,7 @@
 
     <header class="header">
         <div class="logo">
-            <img src="photos/Bss2.webp" alt="logo bss" />
+            <img src="photos/Bss2.webp" alt="logo bss">
         </div>
 
         <button class="hamburger" id="hamburger">
@@ -29,72 +29,49 @@
             </ul>
         </nav>
     </header>
-<body>
 
-<div class="container">
-
-    <!-- HEADER -->
-    <header class="header">
-  <div class="logo img">
-    <img src="photos/Bss2.webp" alt="logo bss" />
-  </div>
-  <nav class="top-menu">
-    <ul>
-      <li><a href="#">Domů</a></li>
-      <li><a href="#">O stránce</a></li>
-      <li><a href="#">Kontakt</a></li>
-    </ul>
-  </nav>
-</header>
-
-
-    <!-- LEFT SIDEBAR -->
     <aside class="left-sidebar">
         <h1>Menu</h1>
         <ul>
-            <li><a href="start game.html">Start (early game)</a></li> <br>
-            <li><a href="mid game.html">Mid game</a></li> <br>
-            <li><a href="late game.html">Late game</a></li> <br>
+            <li><a href="start game.html">Start (early game)</a></li>
+            <li><a href="mid game.html">Mid game</a></li>
+            <li><a href="late game.html">Late game</a></li>
         </ul>
     </aside>
 
-    <!-- MAIN CONTENT -->
     <main class="main-content">
-
-        <!-- KARTY -->
-       <section class="cards">
-        
+        <section class="cards">
             <div class="card"><a href="start game.html">O hře</a></div>
             <div class="card"><a href="mid game.html">O stránce</a></div>
-            
-            
-        
         </section>
 
-        <!-- OBRÁZKY S HOVER EFEKTEM -->
         <section class="images">
-            <img src="" alt="Obrázek 1">
-            <img src="" alt="Obrázek 2">
+            <img src="cesta-k-obrazku1.jpg" alt="Obrázek 1">
+            <img src="cesta-k-obrazku2.jpg" alt="Obrázek 2">
         </section>
-
     </main>
 
-    <!-- RIGHT SIDEBAR -->
     <aside class="right-sidebar">
         <h3>Reklama</h3>
-        <div class="banner"><a href="https://www.google.com/aclk?sa=L&ai=DChsSEwjGz5mL6J6RAxVIXJEFHWfEHHUYACICCAEQEBoCbHI&co=1&ase=2&gclid=EAIaIQobChMIxs-Zi-iekQMVSFyRBR1nxBx1EAQYASABEgKWBfD_BwE&cce=2&category=acrcp_v1_32&sig=AOD64_0yDjZgIPUlgky36cJcAOvAuJtb8w&ctype=5&q=&nis=4&ved=2ahUKEwjR-5SL6J6RAxWsBxAIHS9wPSsQ9aACKAB6BAgKEBE&adurl=">Horské bundy</a></div>
-        <div class="banner"><a href="https://www.google.com/aclk?sa=L&ai=DChsSEwjusIXb556RAxUEC6IDHfTtMGUYACICCAEQGhoCbGU&co=1&ase=2&gclid=EAIaIQobChMI7rCF2-eekQMVBAuiAx307TBlEAQYBSABEgJhJfD_BwE&cce=2&category=acrcp_v1_32&sig=AOD64_2ZGOvRtauSiavXz0F92xcWSSiPUA&ctype=5&q=&nis=4&ved=2ahUKEwjCvP_a556RAxVtGhAIHRfoG60Q9aACKAB6BAgIEEM&adurl=">Cepín</a></div>
+        <div class="banner"><a href="https://www.google.com/search?q=horske+bundy">Horské bundy</a></div>
+        <div class="banner"><a href="https://www.google.com/search?q=cepin">Cepín</a></div>
     </aside>
 
-    <!-- FOOTER -->
     <footer class="footer">
         <div class="footer-left">BSS wiki</div>
         <div class="footer-right">Kontakt: patrik.vitkovsky@frengp.cz</div>
     </footer>
-    
 
 </div>
 
+<script>
+    const btn = document.getElementById('hamburger');
+    const nav = document.getElementById('top-menu');
+
+    btn.addEventListener('click', () => {
+        nav.classList.toggle('active');
+    });
+</script>
+
 </body>
 </html>
-
