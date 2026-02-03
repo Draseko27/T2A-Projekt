@@ -175,6 +175,6 @@ flex: 1;
 @media (max-width: 768px) {
     .cards{
         color: aqua;
-        background-color: #333;
+        background-color: #cc2b2b;
     }
 }
