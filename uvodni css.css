@@ -44,7 +44,7 @@ body {
     text-decoration: none;
 }
 
-.logo img {
+.logoimg {
   max-height: 50px; /* nebo jaká je výška headeru */
   height: 100%;
   width: auto;
@@ -171,3 +171,4 @@ flex: 1;
     border-radius: 5px;
     color: black;
 }
+
