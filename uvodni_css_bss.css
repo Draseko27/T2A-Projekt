@@ -337,51 +337,53 @@ body {
 .nav-card.zones:hover { border-left: 8px solid #e74c3c; }
 
 @media screen and (max-width: 850px) {
-    .container {
-        display: flex; 
+    /* ... tvůj stávající kód pro .container, .left-sidebar atd. zůstává ... */
+
+    /* HAMBURGER TLAČÍTKO */
+    .hamburger {
+        display: flex;
         flex-direction: column;
+        justify-content: space-around;
+        width: 30px;
+        height: 25px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        z-index: 1001;
     }
 
-    .header {
-        flex-direction: column;
-        gap: 15px;
-        position: relative; 
+    .hamburger span {
+        width: 30px;
+        height: 3px;
+        background: white;
+        border-radius: 10px;
+        transition: 0.3s;
+    }
+
+    /* ÚPRAVA MENU NA MOBILU */
+    .top-menu {
+        display: none; /* Schováme menu standardně */
+        position: absolute;
+        top: 100%; /* Hned pod header */
+        left: 0;
+        width: 100%;
+        background: #333;
+        padding: 20px 0;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+    }
+
+    .top-menu.active {
+        display: block; /* Ukáže se, když JS přidá třídu 'active' */
     }
 
     .top-menu ul {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 10px;
+        flex-direction: column; /* Položky pod sebou */
+        align-items: center;
+        gap: 20px;
     }
 
     .top-menu li {
         margin: 0;
-    }
-
-    .left-sidebar, .right-sidebar {
-        width: 100% !important;
-        order: 2; 
-    }
-
-    .main-content {
-        order: 1; 
-        padding: 15px;
-    }
-
-    .sticky-container {
-        position: static !important;
-        max-height: none !important;
-        padding: 20px;
-    }
-
-    .main-grid {
-        grid-template-columns: 1fr !important;
-    }
-
-    .footer {
-        flex-direction: column;
-        text-align: center;
-        gap: 10px;
-        order: 3;
     }
 }
