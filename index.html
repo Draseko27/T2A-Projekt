@@ -3,75 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BSS Wiki</title>
-    <link rel="stylesheet" href="uvodni css.css">
+    <title>Web Layout – HTML & CSS</title>
+    <link rel="stylesheet" href="uvodni_css_bss.css">
+    <link rel="stylesheet" href="gears2.css">
 </head>
 <body>
 
 <div class="container">
 
+    <!-- HEADER -->
     <header class="header">
-        <div class="logo">
-            <img src="photos/Bss2.webp" alt="logo bss">
-        </div>
+  <div class="logo img">
+    <img src="photos/Basic_Bee_OriginalIcon.webp" alt="logo bss" />
+  </div>
+  <nav class="top-menu">
+    <ul>
+      <li><a href="uvodni_bss.html" style="margin-right: 62px;">Domů</a></li>
+      <!--<li><a href="#">O stránce</a></li>
+      <li><a href="#">Kontakt</a></li>-->
+    </ul>
+  </nav>
+</header>
 
-        <button class="hamburger" id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
 
-        <nav class="top-menu" id="top-menu">
-            <ul>
-                <li><a href="#">Domů</a></li>
-                <li><a href="#">O stránce</a></li>
-                <li><a href="#">Kontakt</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <aside class="left-sidebar">
-        <h1>Menu</h1>
-        <ul>
-            <li><a href="start game.html">Start (early game)</a></li>
-            <li><a href="mid game.html">Mid game</a></li>
-            <li><a href="late game.html">Late game</a></li>
+    <!-- LEFT SIDEBAR -->
+    <aside class="left-sidebar" style="background-image: url('photos/Bees_Army(2).PNG'); 
+                background-size: cover; 
+                background-position: center; 
+                height: 100vh; 
+                width: 100%;">
+        <h1 style="text-align: center;" class="sidebar-title">Menu</h1>
+        <ul class="sidebar-links">
+            <li><a href="gears.html">Gear</a></li>
+            <li><a href="Bees.html">Bees</a></li>
+            <li><a href="bears.html">Bears</a></li>
+            <li><a href="fields-zones.html">Fields</a></li>
         </ul>
     </aside>
 
+    <!-- MAIN CONTENT -->
     <main class="main-content">
-        <section class="cards">
-            <div class="card"><a href="start game.html">O hře</a></div>
-            <div class="card"><a href="mid game.html">O stránce</a></div>
-        </section>
 
-        <section class="images">
-            <img src="cesta-k-obrazku1.jpg" alt="Obrázek 1">
-            <img src="cesta-k-obrazku2.jpg" alt="Obrázek 2">
-        </section>
+
+        
+        <!-- KARTY -->
+       <!--<section class="cards">
+        
+            <div class="card"><a href="start_game bss.html">Early Game</a></div>
+            <div class="card"><a href="mid_game_bss.html">Mid Game</a></div>
+            <div class="card"><a href="late_game_bss.html">Late Game</a></div>
+            
+        
+        </section>-->
+
+
+
+        <div class="welcome-section">
+    <h1>Vítejte na Bee Swarm Wiki!</h1>
+    <p>Vyber si kategorii, která tě zajímá, a začni svou cestu za medem.</p>
+</div>
+
+<div class="main-grid">
+    <a href="Bees.html" class="nav-card bees">
+        <div class="card-icon">
+            <img src="photos/Precise_Bee.webp" alt="precise bee">
+        </div>
+        <div class="card-text">
+            <h3>Bees</h3>
+            <p>Seznam všech včel a jejich schopností.</p>
+        </div>
+    </a>
+
+    <a href="gears.html" class="nav-card gear">
+        <div class="card-icon">
+            <img src="photos/Dark_Scythe.webp" alt="Dark_Scythe">
+        </div>
+        <div class="card-text">
+            <h3>Gear</h3>
+            <p>Vybavení, batohy a nástroje pro sběr.</p>
+        </div>
+    </a>
+
+    
+
+    <a href="Bears.html" class="nav-card bears">
+        <div class="card-icon">
+            <img src="photos/MotherBearTrans.webp" alt="mother_bear">
+        </div>
+        <div class="card-text">
+            <h3>Bears</h3>
+            <p>Úkoly od medvědů a jejich odměny.</p>
+        </div>
+    </a>
+
+    <a href="fields-zones.html" class="nav-card zones">
+        <div class="card-icon">
+            <img src="photos/Pepper_Patch_Icon.webp" alt="Pepper_Patch_Icon">
+        </div>
+        <div class="card-text">
+            <h3>Fields</h3>
+            <p>Detailní info o polích a monstrech.</p>
+        </div>
+    </a>
+</div>
     </main>
 
-    <aside class="right-sidebar">
-        <h3>Reklama</h3>
-        <div class="banner"><a href="https://www.google.com/search?q=horske+bundy">Horské bundy</a></div>
-        <div class="banner"><a href="https://www.google.com/search?q=cepin">Cepín</a></div>
-    </aside>
+    <!-- RIGHT SIDEBAR -->
+    <aside class="right-sidebar" style="background-image: url('photos/Bees_Army(3).PNG'); 
+                background-size: cover; 
+                background-position: center; 
+                height: 100vh; 
+                width: 100%;">
+    <div class="sidebar-title">Odkazy</div>
+    
+    <ul class="sidebar-links">
+        <li><a href="https://www.roblox.com/...">BSS-Roblox</a></li>
+        <li><a href="https://discord.com/...">BSS-Discord</a></li>
+    </ul>
+</aside>
 
+    <!-- FOOTER -->
     <footer class="footer">
         <div class="footer-left">BSS wiki</div>
         <div class="footer-right">Kontakt: patrik.vitkovsky@frengp.cz</div>
     </footer>
+    
 
 </div>
-
-<script>
-    const btn = document.getElementById('hamburger');
-    const nav = document.getElementById('top-menu');
-
-    btn.addEventListener('click', () => {
-        nav.classList.toggle('active');
-    });
-</script>
 
 </body>
 </html>
