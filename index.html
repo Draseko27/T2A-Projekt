@@ -13,16 +13,21 @@
 
     <!-- HEADER -->
     <header class="header">
-  <div class="logo img">
-    <img src="photos/Basic_Bee_OriginalIcon.webp" alt="logo bss" />
-  </div>
-  <nav class="top-menu">
-    <ul>
-      <li><a href="uvodni_bss.html" style="margin-right: 62px;">Domů</a></li>
-      <!--<li><a href="#">O stránce</a></li>
-      <li><a href="#">Kontakt</a></li>-->
-    </ul>
-  </nav>
+    <div class="logo img">
+        <img src="photos/Basic_Bee_OriginalIcon.webp" alt="logo bss" />
+    </div>
+
+    <button class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <nav class="top-menu" id="top-menu">
+        <ul>
+            <li><a href="uvodni_bss.html">Domů</a></li>
+            </ul>
+    </nav>
 </header>
 
 
@@ -117,8 +122,8 @@
     <div class="sidebar-title">Odkazy</div>
     
     <ul class="sidebar-links">
-        <li><a href="https://www.roblox.com/...">BSS-Roblox</a></li>
-        <li><a href="https://discord.com/...">BSS-Discord</a></li>
+        <li><a href="https://www.roblox.com/games/1537690962/Bee-Swarm-Simulator#ropro-quick-play">BSS-Roblox</a></li>
+        <li><a href="https://discord.com/invite/bee">BSS-Discord</a></li>
     </ul>
 </aside>
 
@@ -130,22 +135,6 @@
     
 
 </div>
-<script>
-    const hamburger = document.getElementById('hamburger');
-    const menu = document.getElementById('top-menu');
 
-    hamburger.addEventListener('click', () => {
-        menu.classList.toggle('active');
-        
-        // Bonus: Animace hamburgeru na X (pokud chceš)
-        hamburger.classList.toggle('open');
-    });
-
-    // Zavřít menu, když klikneš na odkaz
-    document.querySelectorAll('.top-menu a').forEach(n => n.addEventListener('click', () => {
-        menu.classList.remove('active');
-    }));
-</script>
 </body>
 </html>
-
