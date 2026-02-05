@@ -1,0 +1,276 @@
+/* ============================================================
+   1. HLAVNÍ OBSAH (Karty s vybavením uprostřed)
+   ============================================================ */
+
+/* Kontejner pro hlavní sekce (Batohy, Nástroje...) */
+.gear-category {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 15px !important;
+    margin-bottom: 25px !important;
+    height: auto !important;
+}
+
+/* Hlavní klikací lišta sekce */
+.gear-category summary {
+    list-style: none !important;
+    outline: none !important;
+    cursor: pointer !important;
+    position: relative;
+    padding: 15px;
+    padding-right: 50px !important;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: background 0.3s ease;
+    font-weight: bold;
+}
+
+.gear-category summary::-webkit-details-marker {
+    display: none !important;
+}
+
+/* Velká šipka u hlavních kategorií */
+.gear-category summary::after {
+    content: '▼';
+    position: absolute;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.3s ease;
+    font-size: 1.2rem;
+    color: #444;
+}
+
+.gear-category[open] summary::after {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+/* Vnitřní karty jednotlivých itemů (např. Pouch, Jar...) */
+.gear-category .field-card {
+    display: flex !important;
+    height: auto !important;
+    margin: 8px 0 !important;
+    padding: 15px !important;
+    background: white !important;
+    border-radius: 12px !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05) !important;
+    animation: slideDown 0.4s ease forwards;
+}
+
+/* ============================================================
+   2. PRAVÝ SIDEBAR (Rychlá navigace - FIXNÍ A SKROLOVACÍ)
+   ============================================================ */
+
+/* Hlavní kontejner sidebaru */
+
+
+/* Jednotlivé rozbalovací "krabičky" v sidebaru */
+.sidebar-accordion {
+    flex-shrink: 0;          /* Zabrání zmáčknutí krabiček */
+    margin-bottom: 8px;
+    border: 1px solid #444;
+    border-radius: 6px;
+    background: #333;
+    overflow: hidden;
+}
+
+/* NADPIS v sidebaru (ten, co má zůstat viset nahoře) */
+.sidebar-accordion summary {
+    position: sticky;        /* Zůstane viset nahoře v rámci sidebaru */
+    top: 0;                 /* Přilepí se k vrchu containeru */
+    z-index: 20;            /* Aby byl nad odkazem */
+    background: #333;       /* Neprůhledné pozadí je nutné! */
+    color: white;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-weight: bold;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #444;
+}
+
+/* Malá šipka v sidebaru */
+.sidebar-accordion summary::after {
+    content: '▼';
+    font-size: 0.7em;
+    transition: transform 0.3s;
+}
+
+.sidebar-accordion[open] summary::after {
+    transform: rotate(180deg);
+}
+
+/* Menu s odkazy (vysouvací část) */
+.sidebar-sub-menu {
+    background: #222;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-sub-menu a {
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #ccc;
+    font-size: 13px;
+    border-bottom: 1px solid #333;
+    transition: 0.2s;
+}
+
+.sidebar-sub-menu a:hover {
+    background: #444;
+    color: white;
+    padding-left: 20px;
+}
+
+/* ============================================================
+   3. STYLOVÁNÍ A ANIMACE
+   ============================================================ */
+
+/* Stylizace posuvníku (scrollbaru) */
+/* 1. Základní styl pro položky v sidebaru */
+.sidebar-links li, .sidebar-accordion, .banner {
+    transition: all 0.2s ease-in-out; /* Plynulý přechod všech změn */
+    cursor: pointer;
+}
+
+/* 2. HOVER EFEKT - Tady se děje ta magie */
+.sidebar-links li:hover, 
+.sidebar-accordion:hover, 
+.banner:hover {
+    background: #444 !important;      /* Světlejší šedá při najetí */
+    border-color: #d4a017;           /* Zlatý okraj při najetí (BSS styl) */
+    transform: translateX(5px);      /* Lehké posunutí doprava */
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.3); /* Jemný stín */
+}
+
+/* 3. Hover efekt přímo pro textový odkaz uvnitř */
+.sidebar-links li a:hover, 
+.banner a:hover {
+    color: #fff;                     /* Čistě bílá při najetí */
+    text-shadow: 0 0 5px rgba(255,255,255,0.5);
+}
+
+/* Stylování seznamu jako celku */
+.sidebar-links {
+    list-style: none; /* Odstraní tečky u seznamu */
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Mezera mezi krabičkami */
+}
+
+/* Stylování jednotlivých položek (to, co jsi poslal) */
+.sidebar-links li {
+    flex-shrink: 0;          /* Zabrání zmáčknutí krabiček */
+    margin-bottom: 8px;
+    border: 1px solid #444;
+    border-radius: 6px;
+    background: #333;
+    overflow: hidden;
+    transition: background 0.3s;
+    margin-left: 20px;
+    margin-right: 20px;
+     /* Plynulá změna barvy při najetí */
+}
+
+/* Stylování odkazů uvnitř krabiček */
+.sidebar-links li a {
+    display: block;    /* Odkaz vyplní celou krabičku */
+    padding: 10px 15px;
+    color: white;      /* Barva textu */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Efekt při najetí myší */
+.sidebar-links li:hover {
+    background: #444; /* Trochu zesvětlí pozadí */
+}
+
+.sidebar-title {
+    /* Písmo a barva */
+    font-size: 22px;
+    font-weight: bold;
+    color: #ffffff; /* Zlatá barva (BSS téma) */
+    text-align: center;
+    
+    /* Vlastní ohraničení (Border) */
+    margin: 20px 15px;      /* Mezery kolem celého boxu */
+    padding: 10px;          /* Mezera mezi textem a borderem */
+    border: 2px solid #555; /* Trochu tlustší border než u tlačítek */
+    border-radius: 8px;     /* Zaoblené rohy */
+    background: #2a2a2a;    /* Trochu tmavší pozadí pro kontrast */
+    
+    /* Efekt pro hloubku */
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5); 
+    text-transform: uppercase; /* Všechna písmena velká pro drsnější vzhled */
+    letter-spacing: 2px;       /* Rozestupy mezi písmeny */
+}
+
+/* ============================================================
+   4. MOBILNÍ VERZE (Media Queries)
+   ============================================================ */
+
+@media screen and (max-width: 850px) {
+    /* Hlavní karty vybavení se přeskládají pod sebe */
+    .gear-category .field-card {
+        flex-direction: column !important; /* Obrázek nahoře, text dole */
+        align-items: center;
+        text-align: center;
+        padding: 20px !important;
+    }
+
+    /* Obrázek v kartě vybavení na mobilu */
+    .gear-category .field-img {
+        margin-right: 0 !important;
+        margin-bottom: 15px !important;
+        width: 120px !important; /* Trochu zmenšíme, aby zbyl prostor pro text */
+        height: auto !important;
+    }
+
+    /* Hlavní lišta kategorie (Batohy atd.) - zvětšíme pro snadnější klikání */
+    .gear-category summary {
+        padding: 18px 20px;
+        font-size: 1.1rem;
+    }
+
+    /* Sidebar úpravy - krabičky přes celou šířku */
+    .sidebar-links li, .sidebar-accordion {
+        margin-left: 10px !important;
+        margin-right: 10px !important;
+        transform: none !important; /* Na mobilu vypneme posun doprava, aby to nelítalo z displeje */
+    }
+
+    /* Zvětšíme plochu pro klikání v sub-menu */
+    .sidebar-sub-menu a {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+
+    /* Nadpis sekce v sidebaru */
+    .sidebar-title {
+        font-size: 18px;
+        letter-spacing: 1px;
+        margin: 15px 10px;
+    }
+
+    /* Úprava šipky u kategorií na mobilu */
+    .gear-category summary::after {
+        right: 15px;
+    }
+}
+
+/* Extra úprava pro velmi malé telefony */
+@media screen and (max-width: 480px) {
+    .gear-category .field-card h3 {
+        font-size: 1.2rem;
+    }
+    
+    .gear-category .field-card p {
+        font-size: 0.9rem;
+    }
+}
