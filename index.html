@@ -130,6 +130,22 @@
     
 
 </div>
+<script>
+    const hamburger = document.getElementById('hamburger');
+    const menu = document.getElementById('top-menu');
 
+    hamburger.addEventListener('click', () => {
+        menu.classList.toggle('active');
+        
+        // Bonus: Animace hamburgeru na X (pokud chceš)
+        hamburger.classList.toggle('open');
+    });
+
+    // Zavřít menu, když klikneš na odkaz
+    document.querySelectorAll('.top-menu a').forEach(n => n.addEventListener('click', () => {
+        menu.classList.remove('active');
+    }));
+</script>
 </body>
 </html>
+
