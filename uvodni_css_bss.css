@@ -342,7 +342,7 @@ body {
 }
 
 /* === MOBILNÍ VERZE (vše pod 850px) === */
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 768px) {
     .header {
         flex-direction: column; /* Logo a pod ním menu */
         align-items: center;
@@ -388,4 +388,5 @@ body {
         order: 1; /* Hlavní grid bude nahoře */
     }
 }
+
 
