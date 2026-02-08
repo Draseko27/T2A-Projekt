@@ -343,7 +343,7 @@ body {
 
 /* === MOBILNÍ VERZE (vše pod 850px) === */
 @media screen and (max-width: 850px) {
-    /* 1. ZAMKNUTÍ STRÁNKY (proti ujíždění doprava) */
+    /* 1. Zamknutí šířky, aby se web nehýbal doprava */
     html, body {
         overflow-x: hidden;
         width: 100%;
@@ -351,43 +351,54 @@ body {
         padding: 0;
     }
 
+    /* 2. Přerovnání celé stránky do jednoho sloupce */
     .container {
         display: flex; 
         flex-direction: column;
         overflow-x: hidden;
     }
 
-    /* 2. HEADER - Logo a Home přesně na střed pod sebou */
+    /* 3. Úprava Headeru - Logo a Home pod sebou na střed */
     .header {
         display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
+        flex-direction: column !important; /* Prvky pod sebou */
+        align-items: center !important;    /* Vše na střed */
         justify-content: center !important;
         padding: 15px 0 !important;
         width: 100% !important;
         box-sizing: border-box;
     }
 
+    /* 4. Úprava loga */
     .logo {
         margin: 0 auto 10px auto !important;
     }
 
-    /* 3. MENU - Zobrazení jen prvního tlačítka (Domů) */
+    .logo img {
+        max-width: 80px;
+        height: auto;
+        display: block;
+    }
+
+    /* 5. Zobrazení POUZE tlačítka DOMŮ (vyčištění menu) */
     .top-menu {
-        display: block !important;
+        display: block !important; /* Aby nebylo schované jako v hamburgeru */
         position: static !important;
         width: auto !important;
+        background: transparent !important;
+        box-shadow: none !important;
     }
 
     .top-menu ul {
         display: flex !important;
-        justify-content: center !important;
+        flex-direction: column !important;
+        align-items: center !important;
         padding: 0 !important;
         margin: 0 !important;
         list-style: none !important;
     }
 
-    /* Schováme vše kromě Domů */
+    /* Skryjeme vše kromě prvního <li> (to je tvé Home/Domů) */
     .top-menu ul li {
         display: none !important;
     }
@@ -397,55 +408,64 @@ body {
     }
 
     .top-menu a {
-        background: #444;
-        padding: 10px 35px;
+        font-size: 18px;
+        background: #444; /* Tmavé tlačítko */
+        padding: 10px 30px;
         border-radius: 8px;
         color: white;
         text-decoration: none;
-        margin-right: 0 !important; /* Oprava toho vyosení z PC verze */
+        margin-right: 0 !important; /* Zrušení marginu z PC verze */
     }
 
-    /* 4. OBSAH A SIDEBARY */
+    /* 6. Sidebary a hlavní obsah */
+    /* Levý sidebar (Bees, Gear atd.) vymažeme úplně */
     .left-sidebar {
-        display: none !important; /* Levý bar s menu pryč */
+        display: none !important;
     }
 
-    /* Odkazy (Discord, Roblox) - teď budou vidět všude, aby ti nezmizely */
+    /* Pravý sidebar (Discord odkazy) - vidět jen na úvodu */
     .right-sidebar {
-        display: block !important;
+        display: none !important; /* V základu schovat (pro Gears) */
         width: 100% !important;
         height: auto !important;
         position: static !important;
-        order: 2; /* Hodíme je dospodu pod včely/geary */
-        background: transparent !important;
+        order: 2;
+    }
+
+    /* Aktivace odkazu jen pro hlavní stranu (vyžaduje <body class="home-page">) */
+    .home-page .right-sidebar {
+        display: block !important;
     }
 
     .main-content {
-        order: 1; /* Včely/Fields budou první */
+        order: 1; /* Obsah bude nahoře */
         padding: 15px;
         width: 100%;
         box-sizing: border-box;
     }
 
-    /* 5. GRID - Karty pod sebe na celou šířku */
+    /* 7. Fix pro sticky kontejnery */
+    .sticky-container {
+        position: static !important;
+        max-height: none !important;
+        overflow-y: visible !important;
+        padding: 20px;
+    }
+
+    /* 8. Karty se včelami pod sebe */
     .main-grid {
         grid-template-columns: 1fr !important;
-        display: flex !important;
-        flex-direction: column !important;
     }
 
-    .nav-card {
-        width: 100% !important;
-        margin-bottom: 15px;
-    }
-
-    /* 6. FOOTER */
+    /* 9. Footer na střed */
     .footer {
         flex-direction: column;
         text-align: center;
+        gap: 10px;
         order: 3;
     }
 }
+
 
 
 
