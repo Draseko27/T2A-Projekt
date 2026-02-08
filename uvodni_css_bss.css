@@ -343,119 +343,104 @@ body {
 
 /* === MOBILNÍ VERZE (vše pod 850px) === */
 @media screen and (max-width: 850px) {
-    
-    /* 1. Celkový kontejner na mobilu pod sebou */
+    /* --- 1. GLOBÁLNÍ ROZLOŽENÍ --- */
     .container {
-        display: flex !important; 
+        display: flex !important;
         flex-direction: column !important;
     }
 
-    /* 2. HEADER - Logo a menu pod sebou, menu vycentrované */
+    /* --- 2. HEADER (Logo + Domů na střed) --- */
     .header {
+        display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
+        justify-content: center !important;
         text-align: center !important;
-        padding: 15px !important;
-        gap: 10px !important;
+        padding: 20px 0 !important;
+        gap: 15px !important;
     }
 
     .logo {
-        margin-bottom: 5px;
+        margin: 0 auto !important;
     }
 
-    /* Vycentrování tlačítka Domů */
+    .logo img {
+        max-width: 100px;
+        height: auto;
+    }
+
     .top-menu {
-        width: 100%;
-        display: flex;
-        justify-content: center; /* Tohle ho dá doprostřed */
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
     }
 
     .top-menu ul {
-        display: flex;
-        justify-content: center;
-        padding: 0;
-        margin: 0;
-        list-style: none;
+        display: flex !important;
+        justify-content: center !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        list-style: none !important;
     }
 
-    /* Pokud máš v top-menu víc věcí a chceš jen Domů, 
-       tenhle řádek skryje ostatní (pokud chceš nechat vše, smaž to) */
-    .top-menu ul li:not(:first-child) {
-        display: none;
+    .top-menu li {
+        margin: 0 !important; /* Maže margin-right z PC verze */
+        padding: 0 !important;
     }
 
     .top-menu a {
-        background: #444; /* Tlačítko pro lepší klikání */
-        padding: 10px 25px;
+        background: #444;
+        padding: 12px 40px;
         border-radius: 8px;
-        color: white;
-        text-decoration: none;
+        color: white !important;
         font-weight: bold;
+        text-decoration: none;
+        white-space: nowrap;
     }
 
-    /* 3. LEVÝ SIDEBAR - Úplné vymazání (Gear, Bees menu zmizí) */
-    .left-sidebar {
+    /* --- 3. MAZÁNÍ SIDEBARŮ (Základní nastavení) --- */
+    /* V základu schováme oba sidebary, aby na Gears nebylo nic */
+    .left-sidebar, .right-sidebar {
         display: none !important;
     }
 
-    /* 4. HLAVNÍ OBSAH - Roztáhnout na max a dát jako první */
+    /* --- 4. ZOBRAZENÍ ODKAZŮ JEN NA ÚVODU --- */
+    /* Zobrazí Discord/Roblox jen pokud má body třídu .home-page */
+    .home-page .right-sidebar {
+        display: block !important;
+        width: 100% !important;
+        background: transparent !important;
+        order: 2; /* Půjde pod hlavní obsah */
+        padding: 20px 0;
+    }
+
+    /* --- 5. HLAVNÍ OBSAH (Grid) --- */
     .main-content {
         width: 100% !important;
-        order: 1; /* Obsah bude nahoře */
-        padding: 15px;
+        order: 1; /* Obsah je nad odkazy */
+        padding: 10px;
         box-sizing: border-box;
     }
 
-    /* Karty (včely/výbava) pod sebou */
     .main-grid {
-        grid-template-columns: 1fr !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 20px !important;
     }
 
-    /* 5. PRAVÝ SIDEBAR - Zachování odkazů a anchorů dospodu */
-    .right-sidebar {
-        display: block !important;
+    .nav-card {
         width: 100% !important;
-        height: auto !important;
-        order: 2; /* Odkazy budou až pod obsahem */
-        background: #ddd !important;
-        padding: 20px 0;
-        position: static !important;
+        margin: 0 !important;
     }
 
-    /* Zrušení fixního pozadí pro mobil, aby se to netlouklo */
-    .right-sidebar {
-        background-image: none !important; 
-    }
-
-    .sticky-container {
-        position: static !important;
-        max-height: none !important;
-        overflow-y: visible !important;
-    }
-
-    /* Styl tlačítek v sidebaru pro snadné klikání prstem */
-    .sidebar-links li {
-        margin: 10px 20px !important;
-        transform: none !important;
-    }
-
-    .sidebar-links li a {
-        display: block;
-        background: #333;
-        color: white;
-        padding: 12px;
-        text-align: center;
-        border-radius: 6px;
-        text-decoration: none;
-    }
-
-    /* 6. FOOTER - Vycentrovaný */
+    /* --- 6. FOOTER --- */
     .footer {
-        flex-direction: column;
-        text-align: center;
-        gap: 10px;
+        flex-direction: column !important;
+        text-align: center !important;
+        gap: 10px !important;
         order: 3;
     }
 }
+
 
 
