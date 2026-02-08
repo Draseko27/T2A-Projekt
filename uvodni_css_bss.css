@@ -343,104 +343,129 @@ body {
 
 /* === MOBILNÍ VERZE (vše pod 850px) === */
 @media screen and (max-width: 850px) {
-    /* --- 1. GLOBÁLNÍ ROZLOŽENÍ --- */
-    .container {
-        display: flex !important;
-        flex-direction: column !important;
+    /* 1. Zamknutí šířky, aby se web nehýbal doprava */
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+        margin: 0;
+        padding: 0;
     }
 
-    /* --- 2. HEADER (Logo + Domů na střed) --- */
+    /* 2. Přerovnání celé stránky do jednoho sloupce */
+    .container {
+        display: flex; 
+        flex-direction: column;
+        overflow-x: hidden;
+    }
+
+    /* 3. Úprava Headeru - Logo a Home pod sebou na střed */
     .header {
         display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
+        flex-direction: column !important; /* Prvky pod sebou */
+        align-items: center !important;    /* Vše na střed */
         justify-content: center !important;
-        text-align: center !important;
-        padding: 20px 0 !important;
-        gap: 15px !important;
+        padding: 15px 0 !important;
+        width: 100% !important;
+        box-sizing: border-box;
     }
 
+    /* 4. Úprava loga */
     .logo {
-        margin: 0 auto !important;
+        margin: 0 auto 10px auto !important;
     }
 
     .logo img {
-        max-width: 100px;
+        max-width: 80px;
         height: auto;
+        display: block;
     }
 
+    /* 5. Zobrazení POUZE tlačítka DOMŮ (vyčištění menu) */
     .top-menu {
-        width: 100% !important;
-        display: flex !important;
-        justify-content: center !important;
+        display: block !important; /* Aby nebylo schované jako v hamburgeru */
+        position: static !important;
+        width: auto !important;
+        background: transparent !important;
+        box-shadow: none !important;
     }
 
     .top-menu ul {
         display: flex !important;
-        justify-content: center !important;
+        flex-direction: column !important;
+        align-items: center !important;
         padding: 0 !important;
         margin: 0 !important;
         list-style: none !important;
     }
 
-    .top-menu li {
-        margin: 0 !important; /* Maže margin-right z PC verze */
-        padding: 0 !important;
-    }
-
-    .top-menu a {
-        background: #444;
-        padding: 12px 40px;
-        border-radius: 8px;
-        color: white !important;
-        font-weight: bold;
-        text-decoration: none;
-        white-space: nowrap;
-    }
-
-    /* --- 3. MAZÁNÍ SIDEBARŮ (Základní nastavení) --- */
-    /* V základu schováme oba sidebary, aby na Gears nebylo nic */
-    .left-sidebar, .right-sidebar {
+    /* Skryjeme vše kromě prvního <li> (to je tvé Home/Domů) */
+    .top-menu ul li {
         display: none !important;
     }
 
-    /* --- 4. ZOBRAZENÍ ODKAZŮ JEN NA ÚVODU --- */
-    /* Zobrazí Discord/Roblox jen pokud má body třídu .home-page */
-    .home-page .right-sidebar {
+    .top-menu ul li:first-child {
         display: block !important;
-        width: 100% !important;
-        background: transparent !important;
-        order: 2; /* Půjde pod hlavní obsah */
-        padding: 20px 0;
     }
 
-    /* --- 5. HLAVNÍ OBSAH (Grid) --- */
-    .main-content {
+    .top-menu a {
+        font-size: 18px;
+        background: #444; /* Tmavé tlačítko */
+        padding: 10px 30px;
+        border-radius: 8px;
+        color: white;
+        text-decoration: none;
+        margin-right: 0 !important; /* Zrušení marginu z PC verze */
+    }
+
+    /* 6. Sidebary a hlavní obsah */
+    /* Levý sidebar (Bees, Gear atd.) vymažeme úplně */
+    .left-sidebar {
+        display: none !important;
+    }
+
+    /* Pravý sidebar (Discord odkazy) - vidět jen na úvodu */
+    .right-sidebar {
+        display: none !important; /* V základu schovat (pro Gears) */
         width: 100% !important;
-        order: 1; /* Obsah je nad odkazy */
-        padding: 10px;
+        height: auto !important;
+        position: static !important;
+        order: 2;
+    }
+
+    /* Aktivace odkazu jen pro hlavní stranu (vyžaduje <body class="home-page">) */
+    .home-page .right-sidebar {
+        display: block !important;
+    }
+
+    .main-content {
+        order: 1; /* Obsah bude nahoře */
+        padding: 15px;
+        width: 100%;
         box-sizing: border-box;
     }
 
+    /* 7. Fix pro sticky kontejnery */
+    .sticky-container {
+        position: static !important;
+        max-height: none !important;
+        overflow-y: visible !important;
+        padding: 20px;
+    }
+
+    /* 8. Karty se včelami pod sebe */
     .main-grid {
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 20px !important;
+        grid-template-columns: 1fr !important;
     }
 
-    .nav-card {
-        width: 100% !important;
-        margin: 0 !important;
-    }
-
-    /* --- 6. FOOTER --- */
+    /* 9. Footer na střed */
     .footer {
-        flex-direction: column !important;
-        text-align: center !important;
-        gap: 10px !important;
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
         order: 3;
     }
 }
+
 
 
 
