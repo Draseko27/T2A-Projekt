@@ -342,51 +342,90 @@ body {
 }
 
 /* === MOBILNÍ VERZE (vše pod 850px) === */
-@media screen and (max-width: 768px) {
-    .header {
-        flex-direction: column; /* Logo a pod ním menu */
-        align-items: center;
-        padding: 10px;
-    }
-
-    .top-menu {
-        width: 100%;
-        margin-top: 10px;
-    }
-
-    .top-menu ul {
-        flex-direction: row; /* Zůstanou v řadě, nebo column pro sloupce */
-        flex-wrap: wrap;    /* Pokud se nevejdou, skočí na další řádek */
-        justify-content: center;
-        gap: 10px;
-        padding: 0;
-    }
-
-    .top-menu a {
-        background: #444; /* Uděláme z nich hezká tlačítka */
-        padding: 8px 15px;
-        border-radius: 5px;
-        font-size: 14px;
-        display: inline-block;
-    }
-
-    /* Aby se hlavní obsah netlačil mezi sidebary jako na fotce */
+@media screen and (max-width: 850px) {
+    
+    /* 1. Přerovnání celé stránky do jednoho sloupce */
     .container {
-        display: flex;
+        display: flex; 
         flex-direction: column;
     }
 
+    /* 2. Úprava Headeru pro hamburger */
+    .header {
+        position: relative; /* Nutné pro správné umístění vyklápěcího menu */
+        flex-direction: row; /* Logo a hamburger vedle sebe */
+        justify-content: space-between;
+        padding: 10px 20px;
+    }
+
+    /* 3. Aktivace hamburgeru (na PC je display: none) */
+   
+
+    /* 4. Skrytí a stylování vysouvacího menu */
+    .top-menu {
+        display: none; /* V základu schované */
+        position: absolute;
+        top: 100%; /* Vyjede hned pod černou lištou */
+        left: 0;
+        width: 100%;
+        background: #333;
+        padding: 20px 0;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+        z-index: 1000;
+    }
+
+    /* Třída, kterou přidá JavaScript po kliknutí */
+    .top-menu.active {
+        display: block; 
+    }
+
+    .top-menu ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .top-menu li {
+        margin: 0;
+    }
+
+    .top-menu a {
+        font-size: 18px;
+        margin-right: 0 !important; /* Zrušíme ten tvůj 62px margin z PC verze */
+    }
+
+    /* 5. Sidebary a hlavní obsah pod sebou */
     .left-sidebar, .right-sidebar {
         width: 100% !important;
-        height: auto !important;
-        position: static !important;
-        order: 2; /* Sidebary skočí dolů */
+        height: auto !important; /* Na mobilu nebudou mít 100vh, aby se dalo skrolovat dolů */
+        order: 2; /* Gears a odkazy skočí pod včely */
     }
 
     .main-content {
-        width: 100% !important;
-        order: 1; /* Hlavní grid bude nahoře */
+        order: 1; /* Včely (hlavní grid) budou první na ráně */
+        padding: 15px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* 6. Fix pro sticky kontejnery v sidebarech (na mobilu musí být statické) */
+    .sticky-container {
+        position: static !important;
+        max-height: none !important;
+        overflow-y: visible !important;
+        padding: 20px;
+    }
+
+    /* 7. Karty se včelami pod sebe */
+    .main-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* 8. Footer na střed */
+    .footer {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+        order: 3;
     }
 }
-
-
