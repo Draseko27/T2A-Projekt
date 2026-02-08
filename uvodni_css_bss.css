@@ -344,65 +344,117 @@ body {
 /* === MOBILNÍ VERZE (vše pod 850px) === */
 @media screen and (max-width: 850px) {
     
-    /* 1. CELKOVÉ ROZLOŽENÍ */
+    /* 1. Celkový kontejner na mobilu pod sebou */
     .container {
-        display: flex; 
-        flex-direction: column;
+        display: flex !important; 
+        flex-direction: column !important;
     }
 
-    /* 2. HEADER - Necháme jen logo a odkaz Domů */
+    /* 2. HEADER - Logo a menu pod sebou, menu vycentrované */
     .header {
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        padding: 15px !important;
+        gap: 10px !important;
     }
 
-    /* Schováme nepotřebné prvky v navigaci (pokud bys jich tam měl víc) */
-    /* Necháme jen první odkaz (Domů), ostatní zmizí */
+    .logo {
+        margin-bottom: 5px;
+    }
+
+    /* Vycentrování tlačítka Domů */
+    .top-menu {
+        width: 100%;
+        display: flex;
+        justify-content: center; /* Tohle ho dá doprostřed */
+    }
+
+    .top-menu ul {
+        display: flex;
+        justify-content: center;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    /* Pokud máš v top-menu víc věcí a chceš jen Domů, 
+       tenhle řádek skryje ostatní (pokud chceš nechat vše, smaž to) */
     .top-menu ul li:not(:first-child) {
         display: none;
     }
 
-    /* 3. KOMPLETNÍ SMAZÁNÍ LEVÉHO SIDEBARU */
-    /* Tohle vymaže celé menu (Bees, Gear, Bears...) */
+    .top-menu a {
+        background: #444; /* Tlačítko pro lepší klikání */
+        padding: 10px 25px;
+        border-radius: 8px;
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    /* 3. LEVÝ SIDEBAR - Úplné vymazání (Gear, Bees menu zmizí) */
     .left-sidebar {
         display: none !important;
     }
 
-    /* 4. HLAVNÍ OBSAH (Karty včel atd.) */
+    /* 4. HLAVNÍ OBSAH - Roztáhnout na max a dát jako první */
     .main-content {
-        width: 100%;
+        width: 100% !important;
+        order: 1; /* Obsah bude nahoře */
         padding: 15px;
         box-sizing: border-box;
     }
 
-    /* Karty se včelami dáme pod sebe, aby byly čitelné */
+    /* Karty (včely/výbava) pod sebou */
     .main-grid {
         grid-template-columns: 1fr !important;
     }
 
-    /* 5. PRAVÝ SIDEBAR (Discord a Roblox odkazy) */
-    /* Tenhle necháme, protože jsi chtěl zachovat odkazy */
+    /* 5. PRAVÝ SIDEBAR - Zachování odkazů a anchorů dospodu */
     .right-sidebar {
+        display: block !important;
         width: 100% !important;
         height: auto !important;
-        background-image: none !important; /* Na mobilu obrázek v pozadí smažeme pro přehlednost */
-        background-color: #ddd !important;
-        padding-bottom: 20px;
+        order: 2; /* Odkazy budou až pod obsahem */
+        background: #ddd !important;
+        padding: 20px 0;
+        position: static !important;
     }
 
-    /* Změníme fixní kontejnery na normální, aby se dalo scrollovat */
+    /* Zrušení fixního pozadí pro mobil, aby se to netlouklo */
+    .right-sidebar {
+        background-image: none !important; 
+    }
+
     .sticky-container {
         position: static !important;
         max-height: none !important;
         overflow-y: visible !important;
     }
 
-    /* 6. FOOTER */
+    /* Styl tlačítek v sidebaru pro snadné klikání prstem */
+    .sidebar-links li {
+        margin: 10px 20px !important;
+        transform: none !important;
+    }
+
+    .sidebar-links li a {
+        display: block;
+        background: #333;
+        color: white;
+        padding: 12px;
+        text-align: center;
+        border-radius: 6px;
+        text-decoration: none;
+    }
+
+    /* 6. FOOTER - Vycentrovaný */
     .footer {
         flex-direction: column;
         text-align: center;
         gap: 10px;
+        order: 3;
     }
 }
 
