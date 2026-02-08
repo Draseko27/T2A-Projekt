@@ -1,224 +1,450 @@
-/* ============================================================
-   1. HLAVNÍ OBSAH (Karty s vybavením uprostřed)
-   ============================================================ */
-
-/* Kontejner pro hlavní sekce (Batohy, Nástroje...) */
-.gear-category {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 15px !important;
-    margin-bottom: 25px !important;
-    height: auto !important;
+/* === ZÁKLAD === */
+html {
+    scroll-behavior: smooth;
 }
 
-/* Hlavní klikací lišta sekce */
-.gear-category summary {
-    list-style: none !important;
-    outline: none !important;
-    cursor: pointer !important;
-    position: relative;
-    padding: 15px;
-    padding-right: 50px !important;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    transition: background 0.3s ease;
-    font-weight: bold;
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f0f0f0;
 }
 
-.gear-category summary::-webkit-details-marker {
-    display: none !important;
+/* === GRID KONTEJNER === */
+.container {
+    display: grid;
+    grid-template-columns: 200px 1fr 200px;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+        "header header header"
+        "left main right"
+        "footer footer footer";
+    min-height: 100vh;
 }
 
-/* Velká šipka u hlavních kategorií */
-.gear-category summary::after {
-    content: '▼';
-    position: absolute;
-    right: 25px;
-    top: 50%;
-    transform: translateY(-50%);
-    transition: transform 0.3s ease;
-    font-size: 1.2rem;
-    color: #444;
-}
-
-.gear-category[open] summary::after {
-    transform: translateY(-50%) rotate(180deg);
-}
-
-/* Vnitřní karty jednotlivých itemů (např. Pouch, Jar...) */
-.gear-category .field-card {
-    display: flex !important;
-    height: auto !important;
-    margin: 8px 0 !important;
-    padding: 15px !important;
-    background: white !important;
-    border-radius: 12px !important;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05) !important;
-    animation: slideDown 0.4s ease forwards;
-}
-
-/* ============================================================
-   2. PRAVÝ SIDEBAR (Rychlá navigace - FIXNÍ A SKROLOVACÍ)
-   ============================================================ */
-
-/* Hlavní kontejner sidebaru */
-
-
-/* Jednotlivé rozbalovací "krabičky" v sidebaru */
-.sidebar-accordion {
-    flex-shrink: 0;          /* Zabrání zmáčknutí krabiček */
-    margin-bottom: 8px;
-    border: 1px solid #444;
-    border-radius: 6px;
+/* === HEADER (Sticky) === */
+.header {
+    grid-area: header;
     background: #333;
-    overflow: hidden;
-}
-
-/* NADPIS v sidebaru (ten, co má zůstat viset nahoře) */
-.sidebar-accordion summary {
-    position: sticky;        /* Zůstane viset nahoře v rámci sidebaru */
-    top: 0;                 /* Přilepí se k vrchu containeru */
-    z-index: 20;            /* Aby byl nad odkazem */
-    background: #333;       /* Neprůhledné pozadí je nutné! */
     color: white;
-    padding: 10px 15px;
-    cursor: pointer;
-    font-weight: bold;
-    list-style: none;
+    padding: 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #444;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-/* Malá šipka v sidebaru */
-.sidebar-accordion summary::after {
-    content: '▼';
-    font-size: 0.7em;
-    transition: transform 0.3s;
-}
-
-.sidebar-accordion[open] summary::after {
-    transform: rotate(180deg);
-}
-
-/* Menu s odkazy (vysouvací část) */
-.sidebar-sub-menu {
-    background: #222;
-    display: flex;
-    flex-direction: column;
-}
-
-.sidebar-sub-menu a {
-    padding: 10px 15px;
-    text-decoration: none;
-    color: #ccc;
-    font-size: 13px;
-    border-bottom: 1px solid #333;
-    transition: 0.2s;
-}
-
-.sidebar-sub-menu a:hover {
-    background: #444;
-    color: white;
-    padding-left: 20px;
-}
-
-/* ============================================================
-   3. STYLOVÁNÍ A ANIMACE
-   ============================================================ */
-
-/* Stylizace posuvníku (scrollbaru) */
-/* 1. Základní styl pro položky v sidebaru */
-.sidebar-links li, .sidebar-accordion, .banner {
-    transition: all 0.2s ease-in-out; /* Plynulý přechod všech změn */
-    cursor: pointer;
-}
-
-/* 2. HOVER EFEKT - Tady se děje ta magie */
-.sidebar-links li:hover, 
-.sidebar-accordion:hover, 
-.banner:hover {
-    background: #444 !important;      /* Světlejší šedá při najetí */
-    border-color: #d4a017;           /* Zlatý okraj při najetí (BSS styl) */
-    transform: translateX(5px);      /* Lehké posunutí doprava */
-    box-shadow: 2px 2px 10px rgba(0,0,0,0.3); /* Jemný stín */
-}
-
-/* 3. Hover efekt přímo pro textový odkaz uvnitř */
-.sidebar-links li a:hover, 
-.banner a:hover {
-    color: #fff;                     /* Čistě bílá při najetí */
-    text-shadow: 0 0 5px rgba(255,255,255,0.5);
-}
-
-/* Stylování seznamu jako celku */
-.sidebar-links {
-    list-style: none; /* Odstraní tečky u seznamu */
+.top-menu ul {
+    list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
-    flex-direction: column;
-    gap: 8px; /* Mezera mezi krabičkami */
 }
 
-/* Stylování jednotlivých položek (to, co jsi poslal) */
-.sidebar-links li {
-    flex-shrink: 0;          /* Zabrání zmáčknutí krabiček */
-    margin-bottom: 8px;
-    border: 1px solid #444;
-    border-radius: 6px;
-    background: #333;
-    overflow: hidden;
-    transition: background 0.3s;
+.top-menu li {
     margin-left: 20px;
-    margin-right: 20px;
-     /* Plynulá změna barvy při najetí */
 }
 
-/* Stylování odkazů uvnitř krabiček */
-.sidebar-links li a {
-    display: block;    /* Odkaz vyplní celou krabičku */
-    padding: 10px 15px;
-    color: white;      /* Barva textu */
+.top-menu a {
+    color: white;
     text-decoration: none;
+    transition: 0.2s;
+}
+
+.top-menu a:hover {
+    color: #ffaa00;
+}
+
+.logo img {
+    max-height: 50px;
+    display: block;
+}
+
+/* === LEFT SIDEBAR === */
+
+
+
+
+.left-sidebar a {
+    text-decoration: none;
+    color: #333;
     font-weight: bold;
+    font-size: 15px;
+    transition: 0.2s;
+}
+
+.left-sidebar a:hover {
+    color: #007bff;
+    padding-left: 5px; /* Malý efekt při najetí */
+}
+
+/* === RIGHT SIDEBAR (Sticky + Scroll fix) === */
+.left-sidebar {
+    grid-area: left;
+    background: #ddd;
+    align-self: stretch;
+}
+.left-sidebar ul {
+    list-style: none; /* Tohle smaže ty tečky */
+    padding: 0;      /* Odstraní odsazení zleva, které seznamy mají */
+    margin: 0;
+    text-align: center;
+}
+
+/* Pokud chceš, aby ty odkazy nebyly tak nalepené na sobě: */
+.left-sidebar li {
+    margin-bottom: 10px;
+}
+
+.sticky-container {
+    position: sticky;
+    top: 80px; /* Mezera pod headerem */
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    
+    /* TOHLE ŘEŠÍ TVŮJ PROBLÉM: */
+    max-height: calc(100vh - 100px); /* Sidebar se nepřetáhne přes spodek obrazovky */
+    overflow-y: auto;               /* Pokud je moc dlouhý, skroluje se v něm */
+}
+
+/* Vyladění scrollbaru v sidebaru (volitelné, pro Chrome/Edge/Safari) */
+.sticky-container::-webkit-scrollbar {
+    width: 6px;
+}
+.sticky-container::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+.nav-title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 22px;
+    background: #444;
+    color: white;
+    padding: 8px;
+    margin-top: 15px;
+    border-radius: 4px;
+}
+
+.odkazy {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+}
+
+.odkazy li {
+    margin-bottom: 6px;
+}
+.right-sidebar {
+    grid-area: right;
+    background: #ddd;
+    align-self: stretch;
+}
+
+.right-sidebar a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    font-size: 15px;
+    transition: 0.2s;
+}
+
+.right-sidebar a:hover {
+    color: #007bff;
+    padding-left: 5px; /* Malý efekt při najetí */
+}
+
+/* === MAIN CONTENT === */
+.main-content {
+    grid-area: main;
+    background: rgb(189, 189, 189);
+    padding: 20px;
+}
+
+.cards {
+
+    display: flex;
+
+    gap: 20px;
+
+    margin-bottom: 20px;
+
+}
+
+
+
+.card {
+
+    flex: 1;
+
+    background: #e1e1e1;
+
+    padding: 20px;
+
+    text-align: center;
+
+    border-radius: 5px;
+
+    transition: 0.3s;
+
+}
+
+
+
+.card:hover {
+
+    background: #d0d0d0;
+
+}
+
+
+
+.card a {
+
+    color: #333;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    font-size: 18px;
+
+    display: block; /* Aby se dalo kliknout na celou plochu karty */
+
+}
+.field-card {
+    display: flex;
+    align-items: center;
+    background: #eee;
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+}
+
+.field-img {
+    width: 150px;
+    height: 100px;
+    object-fit: contain;
+    background: #fff;
+    margin-right: 20px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.velky-nadpis-gear {
+    text-align: center;
+    background: #444;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+/* === FOOTER === */
+.footer {
+    grid-area: footer;
+    background: #333;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+/* Oprava skákání pod sticky header */
+[id] {
+    scroll-margin-top: 190px;
+}
+
+
+/* Styl pro nadpis a úvod */
+.welcome-section {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Grid pro karty na hlavní stránce */
+.main-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Automaticky se naskládají */
+    gap: 20px;
+    padding: 10px;
+}
+
+/* Základní styl navigační karty */
+.nav-card {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    border: 1px solid #ddd;
 }
 
 /* Efekt při najetí myší */
-.sidebar-links li:hover {
-    background: #444; /* Trochu zesvětlí pozadí */
+.nav-card:hover {
+    transform: translateY(-5px); /* Karta trochu vyskočí */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    border-color: #ffaa00;
 }
 
-.sidebar-title {
-    /* Písmo a barva */
+/* Styl ikony v kartě */
+.card-icon {
+    width: 70px;         /* Pevná šířka kroužku */
+    height: 70px;        /* Pevná výška kroužku */
+    background: #f0f0f0; /* Světlé pozadí */
+    border-radius: 50%;  /* Udělá to kulaté */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;    /* Vše, co přesahuje kroužek, se schová */
+    flex-shrink: 0;      /* Zabraní tomu, aby se kroužek smáčkl, když je text dlouhý */
+}
+
+.card-icon img {
+    max-width: 80%;      /* Obrázek bude mít kolem sebe trošku místa */
+    max-height: 80%;     /* Aby nebyl nalepený na okrajích */
+    object-fit: contain; /* Zachová poměr stran, aby včela nebyla tlustá nebo hubená */
+}
+
+.card-text h3 {
+    margin: 0;
     font-size: 22px;
-    font-weight: bold;
-    color: #ffffff; /* Zlatá barva (BSS téma) */
-    text-align: center;
-    
-    /* Vlastní ohraničení (Border) */
-    margin: 20px 15px;      /* Mezery kolem celého boxu */
-    padding: 10px;          /* Mezera mezi textem a borderem */
-    border: 2px solid #555; /* Trochu tlustší border než u tlačítek */
-    border-radius: 8px;     /* Zaoblené rohy */
-    background: #2a2a2a;    /* Trochu tmavší pozadí pro kontrast */
-    
-    /* Efekt pro hloubku */
-    box-shadow: inset 0 0 10px rgba(0,0,0,0.5); 
-    text-transform: uppercase; /* Všechna písmena velká pro drsnější vzhled */
-    letter-spacing: 2px;       /* Rozestupy mezi písmeny */
+    color: #222;
 }
 
-/* Animace sjetí karet */
-@keyframes slideDown {
-    from { 
-        opacity: 0; 
-        transform: translateY(-10px); 
+.card-text p {
+    margin: 5px 0 0;
+    font-size: 14px;
+    color: #666;
+}
+
+/* Barevné akcenty pro jednotlivé kategorie (volitelné) */
+.nav-card.bees:hover { border-left: 8px solid #ffcc00; }
+.nav-card.gear:hover { border-left: 8px solid #3498db; }
+.nav-card.shops:hover { border-left: 8px solid #2ecc71; }
+.nav-card.bears:hover { border-left: 8px solid #a0522d; }
+.nav-card.zones:hover { border-left: 8px solid #e74c3c; }
+
+/* Toto musí být v horní části CSS, ne v @media! */
+.hamburger {
+    display: none; 
+}
+
+/* === MOBILNÍ VERZE (vše pod 850px) === */
+@media screen and (max-width: 850px) {
+    
+    /* 1. Přerovnání celé stránky do jednoho sloupce */
+    .container {
+        display: flex; 
+        flex-direction: column;
     }
-    to { 
-        opacity: 1; 
-        transform: translateY(0); 
+
+    /* 2. Úprava Headeru pro hamburger */
+    .header {
+        position: relative; /* Nutné pro správné umístění vyklápěcího menu */
+        flex-direction: row; /* Logo a hamburger vedle sebe */
+        justify-content: space-between;
+        padding: 10px 20px;
+    }
+
+    /* 3. Aktivace hamburgeru (na PC je display: none) */
+    .hamburger {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 30px;
+        height: 25px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        z-index: 1001;
+    }
+
+    .hamburger span {
+        width: 30px;
+        height: 4px;
+        background: white;
+        border-radius: 10px;
+        transition: 0.3s;
+    }
+
+    /* 4. Skrytí a stylování vysouvacího menu */
+    .top-menu {
+        display: none; /* V základu schované */
+        position: absolute;
+        top: 100%; /* Vyjede hned pod černou lištou */
+        left: 0;
+        width: 100%;
+        background: #333;
+        padding: 20px 0;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+        z-index: 1000;
+    }
+
+    /* Třída, kterou přidá JavaScript po kliknutí */
+    .top-menu.active {
+        display: block; 
+    }
+
+    .top-menu ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .top-menu li {
+        margin: 0;
+    }
+
+    .top-menu a {
+        font-size: 18px;
+        margin-right: 0 !important; /* Zrušíme ten tvůj 62px margin z PC verze */
+    }
+
+    /* 5. Sidebary a hlavní obsah pod sebou */
+    .left-sidebar, .right-sidebar {
+        width: 100% !important;
+        height: auto !important; /* Na mobilu nebudou mít 100vh, aby se dalo skrolovat dolů */
+        order: 2; /* Gears a odkazy skočí pod včely */
+    }
+
+    .main-content {
+        order: 1; /* Včely (hlavní grid) budou první na ráně */
+        padding: 15px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* 6. Fix pro sticky kontejnery v sidebarech (na mobilu musí být statické) */
+    .sticky-container {
+        position: static !important;
+        max-height: none !important;
+        overflow-y: visible !important;
+        padding: 20px;
+    }
+
+    /* 7. Karty se včelami pod sebe */
+    .main-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* 8. Footer na střed */
+    .footer {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+        order: 3;
     }
 }
