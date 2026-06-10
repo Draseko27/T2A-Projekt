@@ -264,6 +264,58 @@
     }
 }
 
+.shop-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Tohle hodí info doleva a tlačítko doprava */
+    background: #fff;
+    margin-bottom: 15px;
+    padding: 15px 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border-left: 8px solid #3498db; /* Pěkný modrý proužek na boku */
+}
+
+/* Seskupení ikony, nadpisu a ceny */
+.item-info {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Mezera mezi ikonou a textem */
+}
+
+/* Reset okrajů pro texty uvnitř karty */
+.card-text h3 {
+    margin: 0;
+    font-size: 20px;
+    color: #222;
+}
+.card-text p {
+    margin: 5px 0 0 0;
+    font-size: 16px;
+    font-weight: bold;
+    color: #666;
+}
+
+/* STYL PRO TLAČÍTKO VPRÁVO */
+.add-to-cart-btn {
+    background-color: #ffaa00; /* Oranžovo-žlutá barva ve stylu BSS */
+    color: #222;
+    border: none;
+    padding: 10px 20px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Efekt při najetí na tlačítko */
+.add-to-cart-btn:hover {
+    background-color: #e09500;
+    transform: translateY(-1px); /* Tlačítko lehce vyskočí */
+}
+
 /* Extra úprava pro velmi malé telefony */
 @media screen and (max-width: 480px) {
     .gear-category .field-card h3 {
